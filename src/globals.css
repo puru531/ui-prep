@@ -10,11 +10,19 @@
   }
 
   body {
-    @apply min-h-screen bg-dark-4 font-inter text-white;
+    @apply min-h-screen font-inter text-white;
   }
 }
 
 @layer utilities {
+  /* Colors */
+  .theme {
+    @apply bg-white text-slate-800 dark:bg-slate-800 dark:text-white;
+  }
+  .theme-light {
+    @apply bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-100;
+  }
+
   /* TYPOGRAPHY */
   .h1-bold {
     @apply text-[36px] font-bold leading-[140%] tracking-tighter;
@@ -83,7 +91,10 @@
 
   /* Links */
   .nav-link {
-    @apply base-regular inline-block rounded-lg px-2 py-1 text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:text-light-1 dark:hover:text-gray-900;
+    @apply base-regular inline-block rounded-lg px-2 py-1 text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:text-gray-900;
+  }
+  .nav-sidebar {
+    @apply base-regular mx-2 my-1 inline-block flex px-2 py-1 text-gray-900 transition-all duration-200 hover:rounded hover:bg-gray-800 hover:text-gray-100 dark:text-white dark:hover:text-gray-100;
   }
 
   .link-tertiary {

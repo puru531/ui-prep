@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 const AppLayout = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-black dark:bg-gray-800 dark:text-white">
+    <div className="theme flex min-h-screen flex-col">
       <div className="flex h-12">
         <Header />
       </div>

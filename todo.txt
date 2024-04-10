@@ -1,6 +1,8 @@
 Tailwind setup Done.
 Dark mode setup Done.
+Added nav bar
+Added sidebar menu for mobiles
+added routing
 
 TODO :
-Change menu
-Add routing
+Add homepage content
