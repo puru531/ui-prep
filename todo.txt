@@ -1,0 +1,6 @@
+Tailwind setup Done.
+Dark mode setup Done.
+
+TODO :
+Change menu
+Add routing

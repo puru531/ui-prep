@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { HiMoon, HiOutlineSun } from "react-icons/hi2";
 
 const ThemeToggle: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(
-    localStorage.getItem("darkMode") === "true"
+    localStorage.getItem("darkMode") === "true",
   );
 
   useEffect(() => {
@@ -16,7 +17,11 @@ const ThemeToggle: React.FC = () => {
 
   return (
     <button onClick={toggleTheme}>
-      {isDarkMode ? "Light Mode" : "Dark Mode"}
+      {isDarkMode ? (
+        <HiOutlineSun className="h3-bold" />
+      ) : (
+        <HiMoon className="h3-bold" />
+      )}
     </button>
   );
 };
