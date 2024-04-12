@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 
 const Header = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
