@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 const AppLayout = () => {
   return (
     <div className="theme flex min-h-screen flex-col">
@@ -11,9 +12,7 @@ const AppLayout = () => {
         <Outlet />
       </main>
 
-      <footer className="bg-gray-800 py-4 text-white">
-        <div className="container mx-auto">Your Footer</div>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -20,7 +20,7 @@
     @apply bg-white text-slate-800 dark:bg-slate-800 dark:text-white;
   }
   .theme-light {
-    @apply bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-100;
+    @apply bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-100;
   }
 
   /* TYPOGRAPHY */
@@ -100,4 +100,31 @@
   .link-tertiary {
     @apply ml-2 text-blue-600;
   }
+
+  /* course card */
+  .course-card {
+    @apply w-full transform cursor-pointer overflow-hidden rounded-xl border-2 border-solid p-2 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl;
+  }
+}
+
+/* color */
+.primary-color {
+  color: #378ce7;
+}
+
+.heading-with-line {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+.heading-with-line::after {
+  content: ""; /* No content displayed for the after pseudo-element */
+  position: absolute; /* Position the line relative to the heading */
+  bottom: 0px; /* Offset the line from the bottom of the heading */
+  left: 50%; /* Center the line horizontally (adjust as needed) */
+  transform: translateX(-50%);
+  width: 30%; /* Adjust width as needed */
+  height: 3px; /* Adjust height of the line */
+  background-color: #378ce7; /* Set the line color */
 }

@@ -10,7 +10,11 @@ const Header = () => {
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (isSidebarOpen && !event.target.closest(".sidebar")) {
+      if (
+        isSidebarOpen &&
+        !event.target.closest(".sidebar") &&
+        !event.target.closest(".humburger")
+      ) {
         setIsSidebarOpen(false); // Close sidebar if clicked outside
       }
     };
@@ -31,7 +35,7 @@ const Header = () => {
   }
   return (
     <>
-      <header className="fixed top-0 mx-auto w-full py-1 shadow-md backdrop-blur-lg">
+      <header className="fixed top-0 mx-auto w-full py-1 shadow-lg backdrop-blur-3xl">
         <div className="px-4">
           <div className="flex items-center justify-between">
             <div className="flex shrink-0">
@@ -53,7 +57,7 @@ const Header = () => {
             <div className="hidden items-center justify-end gap-3 sm:flex">
               <ThemeToggle />
             </div>
-            <div className="text-3xl sm:hidden">
+            <div className="humburger text-3xl sm:hidden">
               <HiBars3 onClick={toggleSideBar} />
             </div>
           </div>
