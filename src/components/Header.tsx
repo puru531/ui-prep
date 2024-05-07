@@ -9,11 +9,11 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
+    const handleOutsideClick = (event: MouseEvent) => {
       if (
         isSidebarOpen &&
-        !event.target.closest(".sidebar") &&
-        !event.target.closest(".humburger")
+        !(event.target! as HTMLElement).closest(".sidebar") &&
+        !(event.target! as HTMLElement).closest(".humburger")
       ) {
         setIsSidebarOpen(false); // Close sidebar if clicked outside
       }
@@ -27,6 +27,7 @@ const Header = () => {
   function toggleSideBar() {
     setIsSidebarOpen((open) => !open);
   }
+
   function handleSideBarMenuClick(value: string) {
     if (value === "js" || value === "react") {
       navigate(`/${value}`);

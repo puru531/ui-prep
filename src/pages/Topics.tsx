@@ -1,17 +1,18 @@
 import { useSelector } from "react-redux";
 import Topic from "./Topic";
+import { CourseTopic, RootState } from "@/types/model";
 
 const Topics = () => {
-  const topics = useSelector((state) => state.topics.topics);
+  const topics = useSelector((state: RootState) => state.topics.allTopics);
   console.log("====== topics", topics);
   return topics?.length > 0 ? (
     <div>
-      {topics.map((topic) => (
-        <Topic key={topic.key} topic={topic} />
+      {topics.map((topic: CourseTopic) => (
+        <Topic key={topic.id} topic={topic} />
       ))}
     </div>
   ) : (
-    <div></div>
+    <div>No topic found</div>
   );
 };
 

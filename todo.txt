@@ -3,6 +3,12 @@ Dark mode setup Done.
 Added nav bar
 Added sidebar menu for mobiles
 added routing
+Add homepage content
 
 TODO :
-Add homepage content
+Build topics : build list for mobile with routing
+Build topics : add sidebar for desktop with routing
+
+
+navigate to topic id on click of topic
+Setup react-query and fetch data based on page using topic_id

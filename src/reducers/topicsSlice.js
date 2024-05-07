@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  topics: [
+  allTopics: [
     {
-      id: "1",
-      courseId: "js",
+      id: 1,
       name: "Fundamentals",
+      course_id: "js",
     },
     {
-      id: "2",
-      courseId: "js",
+      id: 2,
       name: "Basics of JavaScript",
+      course_id: "js",
     },
   ],
+  currentTopic: {}
 };
 
 const topicsSlice = createSlice({
@@ -21,10 +22,13 @@ const topicsSlice = createSlice({
   reducers: {
     // all functions to set the data to state globally
     setTopics(state, action) {
-      state.topics = action.payload;
+      state.allTopics = action.payload;
     },
+    setCurrentTopic(state, action) {
+      state.currentTopic = action.payload;
+    }
   },
 });
 
-export const { setTopics } = topicsSlice.actions; //topicsSlice.actions gives all the functions (reducers)
+export const { setTopics, setCurrentTopic } = topicsSlice.actions; //topicsSlice.actions gives all the functions (reducers)
 export default topicsSlice.reducer;

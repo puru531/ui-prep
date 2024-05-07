@@ -1,10 +1,29 @@
-import React from "react";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiBookOpen } from "react-icons/hi2";
+import { useDispatch } from "react-redux";
+import {  useNavigate, useLocation } from "react-router-dom";
+import {  setCurrentTopic } from "../reducers/topicsSlice";
 
-const Topic = ({ topic }) => {
+interface TopicProps {
+  topic: {
+    id: number;
+    name: string;
+  };
+}
+
+const Topic = ({ topic }: TopicProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+
+  function handleTopicClick() {
+    navigate(`${location?.pathname}/${topic?.id}`);
+    dispatch(setCurrentTopic(topic));
+  }
+
   return (
-    <div className="mx-3 mb-2 flex items-center justify-between rounded-lg bg-gray-200 py-2">
+    <div className="mx-3 mb-2 flex items-center justify-between rounded-lg bg-gray-200 text-gray-900 py-2" onClick={handleTopicClick}>
       <div className="mx-2">
         <HiBookOpen className="h3-bold" />
       </div>
