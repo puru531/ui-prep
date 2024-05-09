@@ -15,8 +15,8 @@ function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="/js" element={<JsLandingPage />} />
-            <Route path="/react" element={<ReactLandingPage />} />
+            <Route path="/js/*" element={<JsLandingPage />} />
+            <Route path="/react/*" element={<ReactLandingPage />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>

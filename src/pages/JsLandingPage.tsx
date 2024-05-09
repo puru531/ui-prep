@@ -1,11 +1,17 @@
 // import { useState, useEffect } from 'react';
-import { Link, Route, useMatch, useParams, useNavigate } from 'react-router-dom';
+import {
+  // Link,
+  Route,
+  useParams,
+  useNavigate,
+  Routes,
+  Outlet,
+} from "react-router-dom";
 // import { getJsTopics } from './api'; // Import your API function
-import { TopicContent } from '.';
-import Topics from './Topics';
+import { TopicContent } from ".";
+import Topics from "./Topics";
 
 function JsLandingPage() {
-  const match = useMatch();
   const { topicId } = useParams();
   const navigate = useNavigate();
   // const [topics, setTopics] = useState([]);
@@ -19,22 +25,20 @@ function JsLandingPage() {
   // }, []);
 
   return (
-
-        <>
+    <>
       <div className="h2-bold my-4">
         Select a <span className="text-yellow-500">topic </span> to start with:
       </div>
-      <div className="flex">
-        <Topics />
+      <div className="flex w-full md:w-1/3">
+        <Topics basePath="/js" />
       </div>
-      <Route path={`${match.path}/topic/:${topicId}`}>
-        <TopicContent onBack={() => navigate(-1)} />
-      </Route>
+      <Routes>
+        <Route
+          path="/js/topic/:topicId"
+          element={<TopicContent onBack={() => navigate(-1)} />}
+        ></Route>
+      </Routes>
     </>
-
-   
-
-
   );
 }
 

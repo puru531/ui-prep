@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import { RootState } from "@/types/model";
 // import { useSelector } from "react-redux";
-
 
 // const TopicContent = () => {
 //   const currentTopic = useSelector((state: RootState) => state.topics.currentTopic);
@@ -12,22 +12,10 @@
 
 // export default TopicContent
 
-
-
-
-
-
-
-
-
-
-
-
-
 // TopicDetail.js
 
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+// import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 // import { getTopicById } from './api'; // Import your API function
 
 function TopicContent({ onBack }) {
@@ -45,8 +33,8 @@ function TopicContent({ onBack }) {
 
   const topic = {
     title: "Fundamental",
-    content: "Fundamental content"
-  }
+    content: "Fundamental content",
+  };
 
   return (
     <div>
