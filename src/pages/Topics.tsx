@@ -14,7 +14,7 @@ const Topics = ({ basePath }: { basePath: string }) => {
         // <Topic key={topic.id} topic={topic} />
         <Link
           key={topic.id}
-          to={`${basePath}/topic/${topic.id}`}
+          to={`${basePath}/${topic.id}`}
           className="mx-3 mb-2 flex items-center justify-between rounded-lg bg-gray-200 py-2 text-gray-900"
         >
           <div className="mx-2">
