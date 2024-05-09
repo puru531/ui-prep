@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Topics = ({ basePath }: { basePath: string }) => {
   const topics = useSelector((state: RootState) => state.topics.allTopics);
-  console.log("====== topics", topics);
+  console.log("====== topics", basePath, topics);
   return topics?.length > 0 ? (
     <div className="w-full">
       {topics.map((topic: CourseTopic) => (
