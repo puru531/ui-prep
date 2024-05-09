@@ -1,7 +1,7 @@
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiBookOpen } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
-import {  useNavigate, useLocation } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import {  setCurrentTopic } from "../reducers/topicsSlice";
 
 interface TopicProps {
@@ -13,12 +13,12 @@ interface TopicProps {
 
 const Topic = ({ topic }: TopicProps) => {
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const dispatch = useDispatch();
 
 
   function handleTopicClick() {
-    navigate(`${location?.pathname}/${topic?.id}`);
+    navigate(`topic/${topic?.id}`);
     dispatch(setCurrentTopic(topic));
   }
 

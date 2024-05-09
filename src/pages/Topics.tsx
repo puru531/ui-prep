@@ -6,7 +6,7 @@ const Topics = () => {
   const topics = useSelector((state: RootState) => state.topics.allTopics);
   console.log("====== topics", topics);
   return topics?.length > 0 ? (
-    <div>
+    <div className="w-full md:w-1/3">
       {topics.map((topic: CourseTopic) => (
         <Topic key={topic.id} topic={topic} />
       ))}
@@ -17,3 +17,15 @@ const Topics = () => {
 };
 
 export default Topics;
+
+
+
+// <div className="topics-container">
+// <ul>
+//   {topics.map(topic => (
+//     <li key={topic.id}>
+//       <Link to={`${match.url}/topic/${topic.id}`}>{topic.title}</Link>
+//     </li>
+//   ))}
+// </ul>
+// </div>
