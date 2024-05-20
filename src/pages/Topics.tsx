@@ -11,7 +11,6 @@ const Topics = ({ basePath }: { basePath: string }) => {
   return topics?.length > 0 ? (
     <div className="w-full">
       {topics.map((topic: CourseTopic) => (
-        // <Topic key={topic.id} topic={topic} />
         <Link
           key={topic.id}
           to={`${basePath}/${topic.id}`}

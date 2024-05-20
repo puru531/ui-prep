@@ -1,6 +1,6 @@
 // import { useState, useEffect } from 'react';
 import { useParams, Outlet } from "react-router-dom";
-import Topics from "./Topics";
+import Topics from "../Topics";
 // import { getJsTopics } from './api'; // Import your API function
 
 function CourseLandingPage({ path }: { path: string }) {
