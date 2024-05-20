@@ -23,7 +23,7 @@ function App() {
   return (
     <main>
       <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools initialIsOpen={false}> */}
+      <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
@@ -40,7 +40,6 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
-      {/* </ReactQueryDevtools> */}
       </QueryClientProvider>
     </main>
   );
