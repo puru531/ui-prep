@@ -1,6 +1,7 @@
 import { CourseCard } from "@/ui";
 
 const HomePage = () => {
+  //some text here
   return (
     <div>
       <div className="h1-bold -mx-2 bg-slate-200 py-20 text-center dark:bg-slate-700">
