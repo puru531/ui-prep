@@ -23,23 +23,23 @@ function App() {
   return (
     <main>
       <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="js" element={<JsLandingPage />}>
-              <Route index element={<TopicContent />} />
-              <Route path="js/:topicId" element={<TopicContent />} />
+        <ReactQueryDevtools initialIsOpen={false} />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="js" element={<JsLandingPage />}>
+                <Route index element={<TopicContent />} />
+                <Route path="js/:topicId" element={<TopicContent />} />
+              </Route>
+              <Route path="react" element={<ReactLandingPage />}>
+                <Route index element={<TopicContent />} />
+                <Route path="react/:topicId" element={<TopicContent />} />
+              </Route>
             </Route>
-            <Route path="react" element={<ReactLandingPage />}>
-              <Route index element={<TopicContent />} />
-              <Route path="react/:topicId" element={<TopicContent />} />
-            </Route>
-          </Route>
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
       </QueryClientProvider>
     </main>
   );

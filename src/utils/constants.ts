@@ -1,0 +1,4 @@
+export enum CONSTANSTS {
+  JAVASCRIPT_COURSE_ID = "1",
+  REACT_COURSE_ID = "2",
+}

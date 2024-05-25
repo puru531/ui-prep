@@ -128,3 +128,18 @@
   height: 3px; /* Adjust height of the line */
   background-color: #378ce7; /* Set the line color */
 }
+
+.loader-animation {
+  background:
+    radial-gradient(farthest-side, var(--color-brand-600) 94%, #0000) top/10px
+      10px no-repeat,
+    conic-gradient(#0000 30%, var(--color-brand-600));
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
+  animation: rotate 1.5s infinite linear;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
