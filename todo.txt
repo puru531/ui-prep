@@ -4,11 +4,14 @@ Added nav bar
 Added sidebar menu for mobiles
 added routing
 Add homepage content
-
-TODO :
 Build topics : build list for mobile with routing
 Build topics : add sidebar for desktop with routing
-
-
+Fetch topics from server
 navigate to topic id on click of topic
 Setup react-query and fetch data based on page using topic_id
+set fetched data in topicSlice reducer and then read from there to display in topics section in UI
+change loader color
+
+
+TODO :
+load content on click of topic

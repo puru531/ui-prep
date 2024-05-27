@@ -4,9 +4,24 @@ import { CourseTopic, RootState } from "@/types/model";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiBookOpen } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { QUERY_KEYS } from "@/utils/queryKeys";
 
 const Topics = ({ basePath }: { basePath: string }) => {
-  const topics = useSelector((state: RootState) => state.topics.allTopics);
+  const topics: CourseTopic[] = useSelector((state: RootState) => {
+    let data: CourseTopic[] = [];
+    switch (basePath) {
+      case QUERY_KEYS.JAVASCRIPT:
+        data = state.topics.jsTopics;
+        break;
+      case QUERY_KEYS.REACT:
+        data = state.topics.reactTopics;
+        break;
+      default:
+        break;
+    }
+    return data;
+  });
+
   console.log("====== topics", basePath, topics);
   return topics?.length > 0 ? (
     <div className="w-full">

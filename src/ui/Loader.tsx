@@ -1,6 +1,8 @@
 const Loader = () => {
   return (
-    <div className="loader-animation m-12 aspect-square w-16 rounded-full"></div>
+    <div className="absolute z-10 flex h-full w-full items-center justify-center">
+      <div className="light-loader-animation dark:dark-loader-animation m-12 aspect-square w-16 rounded-full "></div>
+    </div>
   );
 };
 
