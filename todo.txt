@@ -11,7 +11,9 @@ navigate to topic id on click of topic
 Setup react-query and fetch data based on page using topic_id
 set fetched data in topicSlice reducer and then read from there to display in topics section in UI
 change loader color
+load content on click of topic
 
 
 TODO :
-load content on click of topic
+solution for topic name on direct refresh, and make topic selected
+make menu active when route happens

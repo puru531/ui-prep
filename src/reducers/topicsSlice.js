@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   jsTopics: [],
   reactTopics: [],
@@ -23,6 +22,6 @@ const topicsSlice = createSlice({
   },
 });
 
-export const { setJsTopics, setReactTopics, setCurrentTopic } =
+export const { setJsTopics, setReactTopics, setCurrentTopic, getCurrentTopic } =
   topicsSlice.actions; //topicsSlice.actions gives all the functions (reducers)
 export default topicsSlice.reducer;

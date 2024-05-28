@@ -1,34 +1,27 @@
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import Topic from "./Topic";
-import { CourseTopic, RootState } from "@/types/model";
+import { CourseTopic } from "@/types/model";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiBookOpen } from "react-icons/hi2";
 import { Link } from "react-router-dom";
-import { QUERY_KEYS } from "@/utils/queryKeys";
+import { setCurrentTopic } from "../reducers/topicsSlice";
+import { useGetTopicsByPath } from "@/services/query";
 
 const Topics = ({ basePath }: { basePath: string }) => {
-  const topics: CourseTopic[] = useSelector((state: RootState) => {
-    let data: CourseTopic[] = [];
-    switch (basePath) {
-      case QUERY_KEYS.JAVASCRIPT:
-        data = state.topics.jsTopics;
-        break;
-      case QUERY_KEYS.REACT:
-        data = state.topics.reactTopics;
-        break;
-      default:
-        break;
-    }
-    return data;
-  });
+  const dispatch = useDispatch();
+  const topics: CourseTopic[] = useGetTopicsByPath(basePath);
 
-  console.log("====== topics", basePath, topics);
+  function handleLinkClick(topic: CourseTopic) {
+    dispatch(setCurrentTopic(topic));
+  }
+
   return topics?.length > 0 ? (
     <div className="w-full">
       {topics.map((topic: CourseTopic) => (
         <Link
           key={topic.id}
-          to={`${basePath}/${topic.id}`}
+          to={`/${basePath}/${topic.id}`}
+          onClick={() => handleLinkClick(topic)}
           className="mx-3 mb-2 flex items-center justify-between rounded-lg bg-gray-200 py-2 text-gray-900"
         >
           <div className="mx-2">

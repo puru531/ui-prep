@@ -15,53 +15,64 @@
 // TopicDetail.js
 
 // import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
-// import { getTopicById } from './api'; // Import your API function
+import { useGetTopicsContentById } from "@/services/query";
+import { Questions, RootState } from "@/types/model";
+import { ErrorPage, Loader } from "@/ui";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import Content from "./Content";
+import { HiArrowLeftCircle } from "react-icons/hi2";
 
 function TopicContent() {
   const { topicId } = useParams();
+  const selectedTopic = useSelector(
+    (state: RootState) => state.topics.currentTopic,
+  );
+
   const navigate = useNavigate();
-  // const [topic, setTopic] = useState(null);
-  // useEffect(() => {
-  //   const fetchTopic = async () => {
-  //     // const data = await getTopicById(topicId); // Fetch topic details from API
-  //     // setTopic(data);
-  //   };
-  //   fetchTopic();
-  // }, [topicId]);
 
-  const topic = {
-    title: "Fundamental",
-    content: "Fundamental content",
-  };
+  const {
+    data: topicContent,
+    isLoading,
+    isError,
+    error,
+  } = useGetTopicsContentById(topicId);
 
-  if (topicId) {
+  if (!topicId)
     return (
-      <div>
-        <h1>Topic Detail --- {topicId}</h1>
-        {topic ? (
-          <div>
+      <div className="flex-1 content-center text-center align-middle">
+        <h2>Kindly select any topic to get started</h2>
+      </div>
+    );
+
+  if (isLoading) return <Loader />;
+  if (isError) return <ErrorPage />;
+
+  return (
+    <div>
+      {topicContent && (
+        <div>
+          <div className="mb-2 flex">
             <button
-              className="md:hidden"
+              className="btn-secondary mr-2 flex items-center md:hidden"
               onClick={(e) => {
                 e.preventDefault();
                 navigate(-1);
               }}
             >
-              Back to Topics
+              <HiArrowLeftCircle className="mr-1 text-lg" />
+              Back
             </button>
-            <h2>{topic.title}</h2>
-            <p>{topic.content}</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              {selectedTopic.name}
+            </h1>
           </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
-    );
-  }
-  return (
-    <div className="flex-1 content-center text-center align-middle">
-      <h2>Kindly select any topic to get started</h2>
+
+          {topicContent.map((item: Questions) => (
+            <Content item={item} key={item.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

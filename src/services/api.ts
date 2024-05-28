@@ -9,3 +9,16 @@ export async function getTopics() {
     console.error(error);
   }
 }
+export async function getTopicsContentById(topicId) {
+  if (topicId === undefined) return [];
+  try {
+    const { data, error } = await supabase
+      .from("questions")
+      .select("*")
+      .eq("topic_id", topicId);
+    if (error) throw Error;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

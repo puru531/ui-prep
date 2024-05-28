@@ -29,11 +29,11 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="js" element={<JsLandingPage />}>
                 <Route index element={<TopicContent />} />
-                <Route path="js/:topicId" element={<TopicContent />} />
+                <Route path=":topicId" element={<TopicContent />} />
               </Route>
               <Route path="react" element={<ReactLandingPage />}>
                 <Route index element={<TopicContent />} />
-                <Route path="react/:topicId" element={<TopicContent />} />
+                <Route path=":topicId" element={<TopicContent />} />
               </Route>
             </Route>
             <Route path="*" element={<PageNotFound />} />
