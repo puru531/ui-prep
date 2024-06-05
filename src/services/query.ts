@@ -6,7 +6,7 @@ import { CourseTopic, RootState } from "@/types/model";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllTopics } from "../reducers/topicsSlice";
 
-const useAllTopics = () => {
+const useGetAllTopics = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QUERY_KEYS.TOPICS],
     queryFn: getTopics,
@@ -19,7 +19,7 @@ const useAllTopics = () => {
 };
 
 export const useGetJsTopics = () => {
-  const { data, isLoading, isError, error } = useAllTopics();
+  const { data, isLoading, isError, error } = useGetAllTopics();
   const topics = data?.filter(
     (topic) => topic.course_id === CONSTANSTS.JAVASCRIPT_COURSE_ID,
   );
@@ -27,7 +27,7 @@ export const useGetJsTopics = () => {
 };
 
 export const useGetReactTopics = () => {
-  const { data, isLoading, isError, error } = useAllTopics();
+  const { data, isLoading, isError, error } = useGetAllTopics();
   const topics = data?.filter(
     (topic) => topic.course_id === CONSTANSTS.REACT_COURSE_ID,
   );

@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./globals.css";
 import {
+  AdminLandingPage,
   HomePage,
   JsLandingPage,
   PageNotFound,
   ReactLandingPage,
   TopicContent,
 } from "./pages";
-import { AppLayout } from "./components";
+import { AppLayout, ProtectedRoute } from "./components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
@@ -35,8 +36,16 @@ function App() {
                 <Route index element={<TopicContent />} />
                 <Route path=":topicId" element={<TopicContent />} />
               </Route>
+              <Route
+                path="admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminLandingPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="*" element={<PageNotFound />} />
             </Route>
-            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

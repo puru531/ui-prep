@@ -3,6 +3,7 @@ import ThemeToggle from "./ThemeToggle";
 import { HiBars3 } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import SideBar from "./SideBar";
+import LoginToggle from "./LoginToggle";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -57,6 +58,7 @@ const Header = () => {
             </div>
             <div className="hidden items-center justify-end gap-3 sm:flex">
               <ThemeToggle />
+              <LoginToggle />
             </div>
             <div className="humburger text-3xl sm:hidden">
               <HiBars3 onClick={toggleSideBar} />

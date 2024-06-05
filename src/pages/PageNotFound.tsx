@@ -1,13 +1,8 @@
-import { Header } from "@/components";
 import { Link } from "react-router-dom";
 
 const PageNotFound = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100 text-black dark:bg-slate-700 dark:text-white">
-      <div className="flex h-12">
-        <Header />
-      </div>
-
+    <div className="flex h-screen flex-col bg-gray-100 text-black dark:bg-slate-700 dark:text-white">
       <main className="m-auto w-3/4 flex-grow px-2 pt-40">
         <div className="h1-semibold text-center">
           The requested page does not exist, please check your URL or visit{" "}
@@ -16,10 +11,6 @@ const PageNotFound = () => {
           </Link>
         </div>
       </main>
-
-      <footer className="bg-gray-800 py-4 text-white">
-        <div className="container mx-auto">Your Footer</div>
-      </footer>
     </div>
   );
 };

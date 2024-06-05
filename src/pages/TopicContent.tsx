@@ -15,7 +15,10 @@
 // TopicDetail.js
 
 // import React, { useState, useEffect } from 'react';
-import { useGetTopicByTopicId, useGetTopicsContentById } from "@/services/query";
+import {
+  useGetTopicByTopicId,
+  useGetTopicsContentById,
+} from "@/services/query";
 import { Questions } from "@/types/model";
 import { ErrorPage, Loader } from "@/ui";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,7 +27,6 @@ import { HiArrowLeftCircle } from "react-icons/hi2";
 
 function TopicContent() {
   const { topicId } = useParams();
-
 
   const navigate = useNavigate();
 
@@ -35,12 +37,12 @@ function TopicContent() {
     error,
   } = useGetTopicsContentById(topicId);
 
-   let {
+  let {
     data: selectedTopic,
     isLoading: isTopicLoading,
     isError: isTopicError,
     error: isTopicFailed,
-  }= useGetTopicByTopicId(topicId);
+  } = useGetTopicByTopicId(topicId);
   selectedTopic = selectedTopic && [...selectedTopic]?.[0];
 
   if (!topicId)
@@ -69,7 +71,7 @@ function TopicContent() {
               Back
             </button>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-              {selectedTopic.name}
+              {selectedTopic?.name}
             </h1>
           </div>
 
