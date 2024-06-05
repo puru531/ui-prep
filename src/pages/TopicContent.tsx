@@ -15,19 +15,16 @@
 // TopicDetail.js
 
 // import React, { useState, useEffect } from 'react';
-import { useGetTopicsContentById } from "@/services/query";
-import { Questions, RootState } from "@/types/model";
+import { useGetTopicByTopicId, useGetTopicsContentById } from "@/services/query";
+import { Questions } from "@/types/model";
 import { ErrorPage, Loader } from "@/ui";
-import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Content from "./Content";
 import { HiArrowLeftCircle } from "react-icons/hi2";
 
 function TopicContent() {
   const { topicId } = useParams();
-  const selectedTopic = useSelector(
-    (state: RootState) => state.topics.currentTopic,
-  );
+
 
   const navigate = useNavigate();
 
@@ -37,6 +34,14 @@ function TopicContent() {
     isError,
     error,
   } = useGetTopicsContentById(topicId);
+
+   let {
+    data: selectedTopic,
+    isLoading: isTopicLoading,
+    isError: isTopicError,
+    error: isTopicFailed,
+  }= useGetTopicByTopicId(topicId);
+  selectedTopic = selectedTopic && [...selectedTopic]?.[0];
 
   if (!topicId)
     return (

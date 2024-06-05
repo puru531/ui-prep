@@ -1,15 +1,21 @@
 import { QUERY_KEYS } from "@/utils/queryKeys";
 import { useQuery } from "@tanstack/react-query";
-import { getTopics, getTopicsContentById } from "./api";
+import { getTopicByTopicId, getTopics, getTopicsContentById } from "./api";
 import { CONSTANSTS } from "@/utils/constants";
 import { CourseTopic, RootState } from "@/types/model";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setAllTopics } from "../reducers/topicsSlice";
 
 const useAllTopics = () => {
-  return useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: [QUERY_KEYS.TOPICS],
     queryFn: getTopics,
   });
+  const dispatch = useDispatch();
+  if (data?.length > 0) {
+    dispatch(setAllTopics(data));
+  }
+  return { data, isLoading, isError, error };
 };
 
 export const useGetJsTopics = () => {
@@ -50,5 +56,11 @@ export const useGetTopicsContentById = (topicId) => {
   return useQuery({
     queryKey: [`topic_${topicId}`],
     queryFn: () => getTopicsContentById(topicId),
+  });
+};
+export const useGetTopicByTopicId = (topicId) => {
+  return useQuery({
+    queryKey: [`topics_${topicId}`],
+    queryFn: () => getTopicByTopicId(topicId),
   });
 };

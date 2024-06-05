@@ -15,6 +15,7 @@ export type Questions = {
 };
 export type RootState = {
   topics: {
+    allTopics: CourseTopic[];
     jsTopics: CourseTopic[];
     reactTopics: CourseTopic[];
     currentTopic: CourseTopic;
