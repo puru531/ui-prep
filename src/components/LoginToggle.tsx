@@ -1,3 +1,4 @@
+import { useApplicationContext } from "@/contexts/ApplicationContextProvider";
 import { useUser } from "@/services/apiAuth";
 import {
   HiArrowLeftOnRectangle,
@@ -6,17 +7,23 @@ import {
 
 const LoginToggle = () => {
   const { isAuthenticated } = useUser();
-  const handleLogout = () => {
-    console.log("===== logout");
+  const { setShowLoginWindow } = useApplicationContext();
+  const handleLoginLogout = () => {
+    if(isAuthenticated) {
+      console.log('implement logout')
+    } else {
+      setShowLoginWindow(true);
+    }
   };
   return (
-    <button onClick={() => handleLogout()}>
+    <button onClick={() => handleLoginLogout()}>
       {isAuthenticated ? (
         <HiArrowRightOnRectangle className="h3-bold" />
       ) : (
         <HiArrowLeftOnRectangle className="h3-bold" />
       )}
     </button>
+
   );
 };
 

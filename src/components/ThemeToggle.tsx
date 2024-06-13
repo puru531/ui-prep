@@ -1,8 +1,8 @@
-import { useTheme } from "@/contexts/ThemeProvider";
+import { useApplicationContext } from "@/contexts/ApplicationContextProvider";
 import { HiMoon, HiOutlineSun } from "react-icons/hi2";
 
 const ThemeToggle: React.FC = () => {
-  const { isDarkMode, toggleDarkMode } = useTheme();
+  const { isDarkMode, toggleDarkMode } = useApplicationContext();
   return (
     <button onClick={() => toggleDarkMode()}>
       {isDarkMode ? (
