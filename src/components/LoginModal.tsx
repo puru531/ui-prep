@@ -1,13 +1,39 @@
 import { useApplicationContext } from "@/contexts/ApplicationContextProvider";
+import { useLogin } from "@/services/apiAuth";
+import MiniSpinner from "@/ui/MiniSpinner";
+import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 const LoginModal = () => {
+  // useEffect(() => {
+  //   login({ email: "puru@codepract.com", password: "puru531" });
+  // }, []);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const { setShowLoginWindow } = useApplicationContext();
+  const { login, isLoading } = useLogin();
+
+  function handleUserLogin(e: FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+          setShowLoginWindow(false);
+        },
+      },
+    );
+  }
+
   return (
     <div
       id="login-popup"
-      tabindex="-1"
-      className="fixed left-0 right-0 top-0 z-50 flex h-full items-center justify-center overflow-y-auto overflow-x-hidden bg-black/50"
+      tabIndex={-1}
+      className="fixed left-0 right-0 top-0 z-40 flex h-full items-center justify-center overflow-y-auto overflow-x-hidden bg-black/50"
     >
       <div className="relative h-full w-full max-w-md p-4 md:h-auto">
         <div className="theme relative rounded-lg shadow">
@@ -24,9 +50,9 @@ const LoginModal = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                cliprule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
             <span className="sr-only">Close popup</span>
@@ -86,36 +112,38 @@ const LoginModal = () => {
                     <div className="h-px w-full bg-slate-200"></div>
                 </div> */}
 
-            <form className="mt-6 w-full">
-              <label for="email" className="sr-only">
+            <form className="mt-6 w-full" onSubmit={(e) => handleUserLogin(e)}>
+              <label htmlFor="email" className="sr-only">
                 Email address
               </label>
               <input
                 name="email"
                 type="email"
-                autocomplete="email"
+                autoComplete="email"
                 required
                 className="input-box"
                 placeholder="Email Address"
-                value=""
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <label for="password" className="sr-only">
+              <label htmlFor="password" className="sr-only">
                 Password
               </label>
               <input
                 name="password"
                 type="password"
-                autocomplete="current-password"
-                required=""
+                autoComplete="current-password"
+                required
                 className="input-box"
                 placeholder="Password"
-                value=""
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               {/* <p className="mb-3 mt-2 text-sm text-gray-500">
                         <a href="/forgot-password" className="text-blue-800 hover:text-blue-600">Reset your password?</a>
                     </p> */}
               <button type="submit" className="btn-primary mt-6">
-                Continue
+                {isLoading ? <MiniSpinner /> : "Continue"}
               </button>
             </form>
 

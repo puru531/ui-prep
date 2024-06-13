@@ -1,12 +1,15 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import supabase from "./supabase";
 import { useNavigate } from "react-router-dom";
 
 export function useLogin() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: login, isLoading } = useMutation({
-    mutationFn: ({ email, password }) => loginApi({ email, password }),
+    mutationFn: ({ email, password }: { email: string; password: string }) =>
+      loginApi({ email, password }),
     onSuccess: (user) => {
+      queryClient.setQueryData(["user"], user?.user);
       console.log("login successful", user);
       navigate("/admin");
     },
@@ -42,4 +45,22 @@ async function getCurrentUserApi() {
 
   if (error) throw new Error(error.message);
   return data?.user;
+}
+
+export function useLogout() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { mutate: logout, isLoading } = useMutation({
+    mutationFn: logoutApi,
+    onSuccess: () => {
+      queryClient.removeQueries(); //delete all queries from react query cache
+      navigate("/", { replace: true });
+    },
+  });
+  return { logout, isLoading };
+}
+
+async function logoutApi() {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw new Error(error.message);
 }

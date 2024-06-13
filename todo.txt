@@ -16,6 +16,7 @@ solution for topic name on direct refresh, and make topic selected
 add user authentication
 
 TODO :
+put all api calls inside useEffect
 implement login modal an handle login and logout button click
 implement Admin Landing page with form and its preview.
 make menu active when route happens

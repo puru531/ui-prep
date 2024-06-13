@@ -4,17 +4,12 @@ import Footer from "./Footer";
 import { useApplicationContext } from "@/contexts/ApplicationContextProvider";
 import { LoginModal } from ".";
 const AppLayout = () => {
-  // const { login, isLoading: logging } = useLogin();
-
-  // useEffect(() => {
-  //   login({ email: "puru@codepract.com", password: "puru531" });
-  // }, []);
-
   const { showLoginWindow } = useApplicationContext();
 
   return (
     <div className="theme flex min-h-screen flex-col">
       {showLoginWindow && <LoginModal />}
+
       <div className="z-2 mb-2 flex h-12">
         <Header />
       </div>
