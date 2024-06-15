@@ -6,6 +6,8 @@ export type CourseTopic = {
 export type Course = {
   id: number;
   name: string;
+  image: string;
+  route: string;
 };
 export type Questions = {
   id?: number;
@@ -16,9 +18,10 @@ export type Questions = {
 export type RootState = {
   topics: {
     allTopics: CourseTopic[];
-    jsTopics: CourseTopic[];
-    reactTopics: CourseTopic[];
     currentTopic: CourseTopic;
+  };
+  courses: {
+    allCourses: Course[];
   };
   // other slices of state...
 };

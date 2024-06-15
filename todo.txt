@@ -15,8 +15,11 @@ load content on click of topic
 solution for topic name on direct refresh, and make topic selected
 add user authentication
 implement login modal an handle login and logout button click
+add admin icon in menu bar and in side bar after login successful.
 
 TODO :
-add admin icon in menu bar and in side bar after login successful.
+handle 'Kindly select any topic to get started' in place of topic content, when not topic is shown
+handle topic id not available in a course but coming when accessed using url
 implement Admin Landing page with form and its preview.
+implement api error message page
 make menu active when route happens

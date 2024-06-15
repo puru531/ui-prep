@@ -1,20 +1,19 @@
+import { Course } from "@/types/model";
 import { Link } from "react-router-dom";
 
 type CourseCardProps = {
-  heading: string;
-  imageUrl: string;
-  route: string;
+  course: Course;
 };
-const CourseCard = ({ heading, imageUrl, route }: CourseCardProps) => {
+const CourseCard = ({ course }: CourseCardProps) => {
   return (
-    <Link to={`/${route}`}>
+    <Link to={`/${course?.route}`}>
       <div className="course-card">
-        <div className="h3-bold mb-1 ml-2">{heading}</div>
+        <div className="h3-bold mb-1 ml-2">{course?.name}</div>
         <div>
           <img
             className="rounded-lg"
-            src={imageUrl}
-            alt={heading}
+            src={course?.image}
+            alt={course?.name}
             width="100%"
           />
         </div>

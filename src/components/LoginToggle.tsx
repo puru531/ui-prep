@@ -9,8 +9,8 @@ const LoginToggle = () => {
   const { isAuthenticated } = useUser();
   const { setShowLoginWindow } = useApplicationContext();
   const handleLoginLogout = () => {
-    if(isAuthenticated) {
-      console.log('implement logout')
+    if (isAuthenticated) {
+      console.log("implement logout");
     } else {
       setShowLoginWindow(true);
     }
@@ -23,7 +23,6 @@ const LoginToggle = () => {
         <HiArrowLeftOnRectangle className="h3-bold" />
       )}
     </button>
-
   );
 };
 

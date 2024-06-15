@@ -3,13 +3,38 @@ import { useDispatch } from "react-redux";
 import { CourseTopic } from "@/types/model";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiBookOpen } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { setCurrentTopic } from "../reducers/topicsSlice";
-import { useGetTopicsByPath } from "@/services/query";
+import { useGetAllTopics, useGetCurrentCourse } from "@/services/query";
+import { Loader } from "@/ui";
+// import { useGetTopicsByPath } from "@/services/query";
 
-const Topics = ({ basePath }: { basePath: string }) => {
+const Topics = () => {
   const dispatch = useDispatch();
-  const topics: CourseTopic[] = useGetTopicsByPath(basePath);
+  const { course } = useParams();
+  const selectedCourse = useGetCurrentCourse(course || "");
+  console.log("selectedCourse", selectedCourse);
+
+  const { allTopics, isLoading, isError } = useGetAllTopics();
+  if (isLoading) return <Loader />;
+  if (isError) {
+    console.log("====== error"); //implement a api error page
+    return;
+  }
+
+  const topics = allTopics?.filter(
+    (topic) => topic.course_id === selectedCourse?.id,
+  );
+
+  if (!selectedCourse)
+    return (
+      <div>
+        No course found,{" "}
+        <Link to="/" className="text-blue-500">
+          Explore courses
+        </Link>
+      </div>
+    );
 
   function handleLinkClick(topic: CourseTopic) {
     dispatch(setCurrentTopic(topic));
@@ -20,7 +45,7 @@ const Topics = ({ basePath }: { basePath: string }) => {
       {topics.map((topic: CourseTopic) => (
         <Link
           key={topic.id}
-          to={`/${basePath}/${topic.id}`}
+          to={`/${course}/${topic.id}`}
           onClick={() => handleLinkClick(topic)}
           className="mx-3 mb-2 flex items-center justify-between rounded-lg bg-gray-200 py-2 text-gray-900"
         >
@@ -35,7 +60,12 @@ const Topics = ({ basePath }: { basePath: string }) => {
       ))}
     </div>
   ) : (
-    <div>No topic found</div>
+    <div>
+      No topic found for {selectedCourse.name},{" "}
+      <Link to="/" className="text-blue-500">
+        Explore other courses
+      </Link>
+    </div>
   );
 };
 

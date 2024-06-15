@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
-import { HiBars3, HiMiniUserCircle } from "react-icons/hi2";
+import { HiBars3, HiHome, HiMiniUserCircle } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 import LoginToggle from "./LoginToggle";
@@ -33,7 +33,7 @@ const Header = () => {
   }
 
   function handleSideBarMenuClick(value: string) {
-    if (value === "js" || value === "react" || value === "admin") {
+    if (value === "admin") {
       navigate(`/${value}`);
     }
     toggleSideBar();
@@ -48,16 +48,19 @@ const Header = () => {
                 <Logo />
               </Link>
             </div>
-            <div className="hidden sm:flex sm:items-center sm:justify-center sm:gap-5">
-              <Link className="nav-link" to="/js">
-                JavaScript
+            {/* ============== For menus in center =========== */}
+            {/* <div className="hidden sm:flex sm:items-center sm:justify-center sm:gap-5">
+              <Link className="nav-link" to="/">
+                Home
               </Link>
-              <Link className="nav-link" to="/react">
-                React.Js
-              </Link>
-            </div>
+            </div> */}
             <div className="hidden items-center justify-end gap-3 sm:flex">
+              <Link className="nav-link" to="/">
+                <HiHome className="h3-bold" />
+              </Link>
+
               <ThemeToggle />
+
               {isAuthenticated && (
                 <Link className="nav-link" to="/admin">
                   <HiMiniUserCircle className="h3-bold" />
