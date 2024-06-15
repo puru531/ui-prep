@@ -1,13 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
-import { HiBars3 } from "react-icons/hi2";
+import { HiBars3, HiMiniUserCircle } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 import LoginToggle from "./LoginToggle";
+import { useUser } from "@/services/apiAuth";
+import { Logo } from ".";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated } = useUser();
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -30,7 +33,7 @@ const Header = () => {
   }
 
   function handleSideBarMenuClick(value: string) {
-    if (value === "js" || value === "react") {
+    if (value === "js" || value === "react" || value === "admin") {
       navigate(`/${value}`);
     }
     toggleSideBar();
@@ -42,10 +45,7 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <div className="flex shrink-0">
               <Link to="/" className="flex items-center">
-                <img className="h-10 w-auto" src="ui-prep-logo.png" alt="" />
-                <span className="h3-bold ml-2">
-                  ui-<span className="text-orange-500">prep</span>
-                </span>
+                <Logo />
               </Link>
             </div>
             <div className="hidden sm:flex sm:items-center sm:justify-center sm:gap-5">
@@ -58,6 +58,11 @@ const Header = () => {
             </div>
             <div className="hidden items-center justify-end gap-3 sm:flex">
               <ThemeToggle />
+              {isAuthenticated && (
+                <Link className="nav-link" to="/admin">
+                  <HiMiniUserCircle className="h3-bold" />
+                </Link>
+              )}
               <LoginToggle />
             </div>
             <div className="humburger text-3xl sm:hidden">

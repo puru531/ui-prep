@@ -5,17 +5,19 @@ import {
   HiArrowLeftOnRectangle,
   HiArrowRightOnRectangle,
   HiBookOpen,
+  HiMiniUserCircle,
   HiMoon,
   HiOutlineSun,
 } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 type SideBarProps = {
   handleSideBarMenuClick: (value: string) => void;
 };
 
 const SideBar = ({ handleSideBarMenuClick }: SideBarProps) => {
-  const { isDarkMode, toggleDarkMode, setShowLoginWindow } =
-    useApplicationContext();
+  const navigate = useNavigate();
+  const { isDarkMode, toggleDarkMode, setShowLoginWindow } = useApplicationContext();
   const { isAuthenticated } = useUser();
   const { logout, isLoading } = useLogout();
 
@@ -23,7 +25,7 @@ const SideBar = ({ handleSideBarMenuClick }: SideBarProps) => {
     toggleDarkMode();
     handleSideBarMenuClick("");
   }
-  function handleLogout(event: MouseEvent<HTMLDivElement, MouseEvent>): void {
+  function handleLogout(): void {
     logout();
     handleSideBarMenuClick("");
   }
@@ -32,7 +34,7 @@ const SideBar = ({ handleSideBarMenuClick }: SideBarProps) => {
 
   return (
     <div
-      className="sidebar theme-light fixed right-0 top-12 z-10 h-auto w-1/2 overflow-y-auto rounded-b-xl transition duration-200
+      className="sidebar theme-light fixed right-0 top-[55px] z-10 h-auto w-1/2 overflow-y-auto rounded-b-xl transition duration-200
       ease-in-out"
     >
       <div className="flex flex-col">
@@ -50,9 +52,10 @@ const SideBar = ({ handleSideBarMenuClick }: SideBarProps) => {
           <HiBookOpen className="h3-bold" />
           <span className="ml-1">React.Js</span>
         </div>
+        <div className="border-t-2 border-slate-800 dark:border-slate-100"/>
         <div
           onClick={toggleTheme}
-          className="nav-sidebar border-t-2 border-slate-800 dark:border-slate-100"
+          className="nav-sidebar"
         >
           {isDarkMode ? (
             <div className="flex">
@@ -66,7 +69,8 @@ const SideBar = ({ handleSideBarMenuClick }: SideBarProps) => {
             </div>
           )}
         </div>
-        <div className="nav-sidebar border-t-2 border-slate-800 dark:border-slate-100">
+        <div className="border-t-2 border-slate-800 dark:border-slate-100"/>
+        <div className="nav-sidebar">
           {isAuthenticated ? (
             <div className="flex" onClick={handleLogout}>
               <HiArrowRightOnRectangle className="h3-bold" />
@@ -79,6 +83,11 @@ const SideBar = ({ handleSideBarMenuClick }: SideBarProps) => {
             </div>
           )}
         </div>
+        {isAuthenticated && 
+          <div className="flex nav-sidebar" onClick={()=> {navigate('/admin'); handleSideBarMenuClick("");}}>
+          <HiMiniUserCircle className="h3-bold" />
+          <span className="ml-1">Admin Dashboard</span>
+        </div>}
       </div>
     </div>
   );

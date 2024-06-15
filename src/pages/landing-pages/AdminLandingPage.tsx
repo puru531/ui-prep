@@ -1,5 +1,12 @@
+import { AddQuestion } from "@/components";
+
 const AdminLandingPage = () => {
-  return <h1 className="text-lg">AdminLandingPage</h1>;
+  return (
+    <div>
+      <h1 className="h1-bold mb-2">Welcome!</h1>
+      <AddQuestion />
+    </div>
+  );
 };
 
 export default AdminLandingPage;

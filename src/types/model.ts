@@ -8,8 +8,8 @@ export type Course = {
   name: string;
 };
 export type Questions = {
-  id: number;
-  topic_id: number;
+  id?: number;
+  topic_id?: number;
   question: string;
   answer: string;
 };

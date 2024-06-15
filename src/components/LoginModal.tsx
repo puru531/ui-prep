@@ -2,7 +2,7 @@ import { useApplicationContext } from "@/contexts/ApplicationContextProvider";
 import { useLogin } from "@/services/apiAuth";
 import MiniSpinner from "@/ui/MiniSpinner";
 import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Logo } from ".";
 
 const LoginModal = () => {
   // useEffect(() => {
@@ -57,14 +57,8 @@ const LoginModal = () => {
             </svg>
             <span className="sr-only">Close popup</span>
           </button>
-
-          <div className="flex w-full justify-center pt-10">
-            <Link to="/" className="flex items-center">
-              <img className="h-10 w-auto" src="ui-prep-logo.png" alt="" />
-              <span className="h3-bold ml-2">
-                ui-<span className="text-orange-500">prep</span>
-              </span>
-            </Link>
+          <div className="pt-10">
+            <Logo />
           </div>
 
           <div className="p-5">
@@ -142,7 +136,7 @@ const LoginModal = () => {
               {/* <p className="mb-3 mt-2 text-sm text-gray-500">
                         <a href="/forgot-password" className="text-blue-800 hover:text-blue-600">Reset your password?</a>
                     </p> */}
-              <button type="submit" className="btn-primary mt-6">
+              <button type="submit" className="btn-primary mt-6 w-full">
                 {isLoading ? <MiniSpinner /> : "Continue"}
               </button>
             </form>
