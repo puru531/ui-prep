@@ -8,3 +8,5 @@ export { default as LoginToggle } from "./LoginToggle";
 export { default as LoginModal } from "./LoginModal";
 export { AddQuestion } from "./AddQuestion";
 export { Logo } from "./Logo";
+export { AddNewCourse } from "./AddNewCourse";
+export { AddNewTopic } from "./AddNewTopic";

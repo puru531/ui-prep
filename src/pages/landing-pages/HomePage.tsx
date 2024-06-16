@@ -1,11 +1,10 @@
 import { useGetAllCourses } from "@/services/query";
-import { CourseCard, Loader } from "@/ui";
+import { CourseCard, ErrorPage, Loader } from "@/ui";
 
 const HomePage = () => {
-  const { courses, isLoading, isError, error } = useGetAllCourses();
-  console.log("========== course", courses, isLoading, isError, error);
+  const { courses, isLoading, isError } = useGetAllCourses();
   if (isLoading) return <Loader />;
-  if (isError) return <h1>Something went wrong</h1>;
+  if (isError) return <ErrorPage />;
 
   return (
     <div>

@@ -44,9 +44,7 @@ const Header = () => {
         <div className="px-4">
           <div className="flex items-center justify-between">
             <div className="flex shrink-0">
-              <Link to="/" className="flex items-center">
-                <Logo />
-              </Link>
+              <Logo />
             </div>
             {/* ============== For menus in center =========== */}
             {/* <div className="hidden sm:flex sm:items-center sm:justify-center sm:gap-5">

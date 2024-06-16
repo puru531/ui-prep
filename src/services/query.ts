@@ -24,13 +24,13 @@ export const useGetAllCourses = () => {
 };
 
 export const useGetCurrentCourse = (courseRoute: string) => {
-  const selectedCourse = useSelector((state: RootState) => {
-    return state.courses.allCourses?.filter(
-      (item) => item.route === courseRoute,
-    );
-  });
-  // const { courses } = useGetAllCourses();
-  // selectedCourse = courses?.filter((item) => item.route === courseRoute);
+  // const selectedCourse = useSelector((state: RootState) => {
+  //   return state.courses.allCourses?.filter(
+  //     (item) => item.route === courseRoute,
+  //   );
+  // });
+  const { courses } = useGetAllCourses();
+  const selectedCourse = courses?.filter((item) => item.route === courseRoute);
 
   return selectedCourse?.[0];
 };

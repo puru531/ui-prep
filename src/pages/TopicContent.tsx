@@ -1,41 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// import { RootState } from "@/types/model";
-// import { useSelector } from "react-redux";
-
-// const TopicContent = () => {
-//   const currentTopic = useSelector((state: RootState) => state.topics.currentTopic);
-//   console.log("====== currentTopic", currentTopic);
-//   return (
-//     <div>TopicContent</div>
-//   )
-// }
-
-// export default TopicContent
-
-// TopicDetail.js
-
-// import React, { useState, useEffect } from 'react';
 import {
+  useGetCurrentCourse,
   useGetTopicByTopicId,
   useGetTopicsContentById,
 } from "@/services/query";
 import { Questions } from "@/types/model";
 import { ErrorPage, Loader } from "@/ui";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Content from "./Content";
 import { HiArrowLeftCircle } from "react-icons/hi2";
 
 function TopicContent() {
-  const { topicId } = useParams();
-
   const navigate = useNavigate();
+  const { course, topicId } = useParams();
 
-  const {
-    data: topicContent,
-    isLoading,
-    isError,
-    error,
-  } = useGetTopicsContentById(topicId);
+  const selectedCourse = useGetCurrentCourse(course || "");
 
   let {
     data: selectedTopic,
@@ -45,6 +23,34 @@ function TopicContent() {
   } = useGetTopicByTopicId(topicId);
   selectedTopic = selectedTopic && [...selectedTopic]?.[0];
 
+  const {
+    data: topicContent,
+    isLoading,
+    isError,
+  } = useGetTopicsContentById(topicId);
+
+  if (isLoading || isTopicLoading) return <Loader />;
+
+  if (!selectedCourse)
+    return (
+      <h2 className="sm:hidden">
+        No topic found{" "}
+        <Link to={"/"} className="text-blue-500">
+          Explore Courses
+        </Link>
+      </h2>
+    );
+  if (selectedTopic && selectedTopic?.course_id !== selectedCourse?.id)
+    return (
+      <h2>
+        The topic you are looking for has not found, please select another
+        topic, or{" "}
+        <Link to={"/"} className="text-blue-500">
+          Explore Courses
+        </Link>
+      </h2>
+    );
+
   if (!topicId)
     return (
       <div className="flex-1 content-center text-center align-middle">
@@ -52,7 +58,6 @@ function TopicContent() {
       </div>
     );
 
-  if (isLoading) return <Loader />;
   if (isError) return <ErrorPage />;
 
   return (

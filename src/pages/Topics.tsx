@@ -1,13 +1,11 @@
 import { useDispatch } from "react-redux";
-// import Topic from "./Topic";
 import { CourseTopic } from "@/types/model";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiBookOpen } from "react-icons/hi2";
 import { Link, useParams } from "react-router-dom";
 import { setCurrentTopic } from "../reducers/topicsSlice";
 import { useGetAllTopics, useGetCurrentCourse } from "@/services/query";
-import { Loader } from "@/ui";
-// import { useGetTopicsByPath } from "@/services/query";
+import { ErrorPage, Loader } from "@/ui";
 
 const Topics = () => {
   const dispatch = useDispatch();
@@ -17,10 +15,7 @@ const Topics = () => {
 
   const { allTopics, isLoading, isError } = useGetAllTopics();
   if (isLoading) return <Loader />;
-  if (isError) {
-    console.log("====== error"); //implement a api error page
-    return;
-  }
+  if (isError) return <ErrorPage />;
 
   const topics = allTopics?.filter(
     (topic) => topic.course_id === selectedCourse?.id,

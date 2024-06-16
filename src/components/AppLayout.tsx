@@ -3,10 +3,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { useApplicationContext } from "@/contexts/ApplicationContextProvider";
 import { LoginModal } from ".";
-import { useGetAllCourses } from "@/services/query";
+
 const AppLayout = () => {
   const { showLoginWindow } = useApplicationContext();
-  useGetAllCourses(); // TODO: fix this, call only once
 
   return (
     <div className="theme flex min-h-screen flex-col">
