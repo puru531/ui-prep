@@ -219,3 +219,19 @@ console.log(yearsUntilRetiment(1999, 'Abc')); //Abc will retire in 22 years
 ```
 
 Note : Arrow function does not get 'this' keyword.
+
+### Function calling other functions
+
+```
+function getGreetingMessage(name) {
+    return `Hello ${name}!`;
+    console.log(name); //this will not execute as function has already exited at return
+}
+
+function greet(name) {
+    const message = getGreetingMessage(name);
+    console.log(message);
+}
+```
+
+# Arrays
