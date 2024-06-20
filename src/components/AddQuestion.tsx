@@ -1,5 +1,5 @@
 import Content from "@/pages/Content";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddNewCourse } from "./AddNewCourse";
 import { AddNewTopic } from "./AddNewTopic";
 import { useGetAllCourses, useGetAllTopics } from "@/services/query";
@@ -29,6 +29,11 @@ export const AddQuestion = ({ onCancel }) => {
   const topics = allTopics?.filter(
     (topic) => topic.course_id === Number(selectedCourseId),
   );
+  useEffect(() => {
+    if(courses.length) {
+      setSelectedCourseId(courses[0]?.id)
+    }
+  }, []);
 
   return (
     <div>
@@ -65,6 +70,7 @@ export const AddQuestion = ({ onCancel }) => {
                 required
                 onChange={(e) => setSelectedTopicId(e.target.value)}
               >
+                <option value="null">Select...</option>
                 {topics?.map((topic) => (
                   <option key={topic.id} value={topic.id}>
                     {topic.name}
