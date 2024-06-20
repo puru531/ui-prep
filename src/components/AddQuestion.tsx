@@ -105,12 +105,12 @@ export const AddQuestion = ({ onCancel }) => {
           </div>
 
           <div className="mt-4 flex justify-end px-2">
-            <button type="submit" className="btn-secondary" onClick={onCancel}>
+            <button type="button" className="btn-secondary" onClick={onCancel}>
               Cancel
             </button>
 
             <button
-              type="button"
+              type="submit"
               className="btn-primary"
               onClick={() =>
                 console.log("======= payload : ", {

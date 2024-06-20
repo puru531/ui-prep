@@ -16,7 +16,7 @@ const AdminLandingPage = () => {
           Add a new question
         </button>
       )}
-      {showForm && <AddQuestion onCancel={() => setShowForm(true)} />}
+      {showForm && <AddQuestion onCancel={() => setShowForm(false)} />}
     </div>
   );
 };
