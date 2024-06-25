@@ -234,4 +234,36 @@ function greet(name) {
 }
 ```
 
-# Arrays
+## Arrays
+ ### Array methods
+ ```
+arr.push(someValue); //adds element at the end of the array
+arr.unshift(someValue); //adds element at the beginning of the array
+
+    //push() and unshift() methods returns length of modified array
+    arr = [1,2,3,4,5];
+    const len = arr.push(8);
+    console.log(len); //6
+
+arr.pop(); //removes last element of the array
+arr.shift(); //removes first element of the array
+
+    //pop() and shift() return the removed element 
+    arr = [1,2,3,4,5];
+    const poppedElement = arr.pop();
+    console.log(poppedElement); //5
+
+arr.indexOf(3); //Knowing position of an element in an array, if it is not there, it will return -1
+arr.includes(3); //Knowing if an element is present in an array or not, returns true,/fals, (strict equality, no type coersion)
+```
+## Objects
+A data structure which combines key-value pairs in one variable.
+```
+const obj1 = {
+    firstName: "Purushottam",
+    lastName: "Kumar",
+    age: 2024 - 2015,
+    friends: ['Motu', 'Lambu', 'Kullu']
+}
+```
+Each key in the object is called a property. So, we can say tha object obj1 has 4 properties.
