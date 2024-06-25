@@ -259,6 +259,7 @@ arr.includes(3); //Knowing if an element is present in an array or not, returns 
 ## Objects
 A data structure which combines key-value pairs in one variable.
 ```
+//Object literal syntax
 const obj1 = {
     firstName: "Purushottam",
     lastName: "Kumar",
@@ -267,3 +268,21 @@ const obj1 = {
 }
 ```
 Each key in the object is called a property. So, we can say tha object obj1 has 4 properties.
+
+Retrieving and changing data in objects: 
+```
+console.log(obj1)//whole object, order does not matter in objects
+
+//Dot notation (.) :
+console.log(obj1.firstName) //Purushottam
+console.log(obj1.job)//undefined
+
+//Bracket notation :
+console.log(obj1['firstName'])//Purushottam
+
+//we can use expressions in bracket notation
+const nameKey = 'Name';
+console.log(obj1['first' + nameKey]) //Purushottam
+```
+
+Lec 43 - 11:10 min
