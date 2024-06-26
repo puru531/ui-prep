@@ -276,13 +276,46 @@ console.log(obj1)//whole object, order does not matter in objects
 //Dot notation (.) :
 console.log(obj1.firstName) //Purushottam
 console.log(obj1.job)//undefined
+obj1.job = 'Programmer'; //adding new property
+console.log(obj1.job)//Programmer
 
 //Bracket notation :
 console.log(obj1['firstName'])//Purushottam
+obj1['location'] = 'India'; //adding new property
+
 
 //we can use expressions in bracket notation
 const nameKey = 'Name';
 console.log(obj1['first' + nameKey]) //Purushottam
 ```
+### Object Methods
 
-Lec 43 - 11:10 min
+As functions are just values, we can store them in Objects as key value pairs.
+```
+const obj2 = {
+    firstName: "Purushottam",
+    lastName: "Kumar",
+    birthYear: 2010,
+    job: 'Programmer',
+    friends: ['Motu', 'Lambu', 'Kullu'],
+    hasDriversLicense: true,
+
+    //function inside object
+    calcAge: function () {
+        console.log(this); //whole obj2 object
+        this.age = 2037 - this.birthYear; //this means same object 
+    },
+    getSummary: function () {
+        return `${this.firstName} is a ${this.age} year old ${this.job}, and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license`;
+    }
+}
+
+//Accessing the method inside the object
+obj2.calcAge();
+//or
+obj2['calcAge']();
+console.log(obj2.age);
+console.log(obj2.getSummary());
+```
+
+Lec- 46 for loop
